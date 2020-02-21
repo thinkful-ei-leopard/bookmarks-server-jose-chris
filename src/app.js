@@ -4,6 +4,7 @@ const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
 const { NODE_ENV} = require('./config')
+const bookmarkRouter = require('./bookmarks/bookmarks-router')
 
 const app = express()
 
@@ -25,6 +26,9 @@ app.use(function validateBearerToken(req, res, next) {
 
     next()
 })
+
+//Route
+app.use('/bookmarks', bookmarkRouter)
 
 
 app.get('/', (req, res) => {
